@@ -36,7 +36,7 @@ generate_binary()
   # count: Copy only BLOCKS input blocks
 
   # /dev/urandom is used instead of /dev/random
-  # as as the latter has a very nasty problem: it blocks.
+  # as the latter has a very nasty problem: it blocks.
   dd if=/dev/urandom of="$filename" bs="$sizeInBytes" count=1
 }
 
