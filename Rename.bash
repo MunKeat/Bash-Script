@@ -41,8 +41,7 @@ append()
   printf -- -----------------------------------------------"\n"
 
   while : ; do
-    printf "Continue? (y/n) "
-    read confirmation
+    read -p "Continue? (y/n) " confirmation
 
     case "$confirmation" in
       y | Y )
@@ -76,8 +75,7 @@ prepend()
   printf -- -----------------------------------------------"\n"
 
   while : ; do
-    printf "Continue? (y/n) "
-    read confirmation
+    read -p "Continue? (y/n) " confirmation
 
     case "$confirmation" in
       y | Y )
@@ -113,8 +111,7 @@ remove()
   printf -- -----------------------------------------------"\n"
 
   while : ; do
-    printf "Continue? (y/n) "
-    read confirmation
+    read -p "Continue? (y/n) " confirmation
 
     case "$confirmation" in
       y | Y )
@@ -152,8 +149,7 @@ replace()
   printf -- -----------------------------------------------"\n"
 
   while : ; do
-    printf "Continue? (y/n) "
-    read confirmation
+    read -p "Continue? (y/n) " confirmation
 
     case "$confirmation" in
       y | Y )
@@ -174,3 +170,17 @@ replace()
 ##########################################
 # MAIN BODY
 ##########################################
+while : ; do
+  # read -e: Permits autocomplete
+  read -e -p "Enter command: " -a order
+
+  if [[ "$order" =~ "cd .*" ]]; then
+    # Recompute FILES variable
+    FILES=$(echo "*")
+  elif [[ "$order" = q ]]; then
+    exit
+  fi
+
+  # Execute command
+  "${order[@]}"
+done
