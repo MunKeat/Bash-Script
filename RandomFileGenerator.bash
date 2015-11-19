@@ -17,6 +17,7 @@
 # FILES AND VARIABLES DEFINITION(S)
 ##########################################
 numArg="${#}"
+binaryFlag="false"
 
 ##########################################
 # FUNCTION DEFINITION(S)
@@ -78,4 +79,10 @@ while : ; do
   read -p "Enter command: " -a order
 done
 
+if [[ ${order[0]} = "-b" ]]; then
+  binaryFlag="true"
+  # Shift
+  unset order[0]
+  order=( "${order[@]}" )
+fi
 
