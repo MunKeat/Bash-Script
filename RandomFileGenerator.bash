@@ -14,6 +14,11 @@
 ##########################################
 
 ##########################################
+# FILES AND VARIABLES DEFINITION(S)
+##########################################
+numArg="${#}"
+
+##########################################
 # FUNCTION DEFINITION(S)
 ##########################################
 generate_binary()
@@ -62,4 +67,15 @@ generate_alphanum()
 ##########################################
 # MAIN BODY
 ##########################################
-echo "Usage: ./RandomFileGenerator.bash <\"Optional: -b for binary\"> <filename> <size in bytes>"
+while : ; do
+  if [[ "$numArg" -lt 2 ]] || [[ "$numArg" -gt 4 ]] || [[ "${#order[@]}" -lt 2 ]] || [[ "${#order[@]}" -gt 4 ]]; then
+    numArg=2
+    echo "Usage: ./RandomFileGenerator.bash <\"Optional: -b for binary\"> <filename> <size in bytes> <\"Optional: multiples of file(s)\">"
+  else
+    break
+  fi
+
+  read -p "Enter command: " -a order
+done
+
+
