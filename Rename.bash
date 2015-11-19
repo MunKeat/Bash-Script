@@ -18,6 +18,7 @@
 # FILES AND VARIABLES DEFINITION(S)
 ##########################################
 FILES=$(echo "*")
+divider="------------------------------------------------------"
 
 ##########################################
 # FUNCTION DEFINITION(S)
@@ -33,12 +34,12 @@ append()
 
   # Confirmation
   printf "%-25s %s\n" "Original" "Append"
-  printf -- -----------------------------------------------"\n"
+  printf -- "$divider\n"
   for file in $FILES; do
     # Use printf to format output; %-10s will generate left-aligned; %10, right-aligned
     printf "%-25s %-25s\n" "$file" "$file$1"
   done
-  printf -- -----------------------------------------------"\n"
+  printf -- "$divider\n"
 
   while : ; do
     read -p "Continue? (y/n) " confirmation
@@ -68,11 +69,11 @@ prepend()
 
   # Confirmation
   printf "%-25s %s\n" "Original" "Prepend"
-  printf -- -----------------------------------------------"\n"
+  printf -- "$divider\n"
   for file in $FILES; do
     printf "%-25s %-25s\n" "$file" "$1$file"
   done
-  printf -- -----------------------------------------------"\n"
+  printf -- "$divider\n"
 
   while : ; do
     read -p "Continue? (y/n) " confirmation
@@ -102,13 +103,13 @@ remove()
 
   # Confirmation
   printf "%-25s %s\n" "Original" "Removed"
-  printf -- -----------------------------------------------"\n"
+  printf -- "$divider\n"
   for file in $FILES; do
     if [[ "$file" =~ .*"$1".* ]]; then
       printf "%-25s %-25s\n" "$file" "${file/$1/}"
     fi
   done
-  printf -- -----------------------------------------------"\n"
+  printf -- "$divider\n"
 
   while : ; do
     read -p "Continue? (y/n) " confirmation
@@ -140,13 +141,13 @@ replace()
 
   # Confirmation
   printf "%-25s %s\n" "Original" "Replaced"
-  printf -- -----------------------------------------------"\n"
+  printf -- "$divider\n"
   for file in $FILES; do
     if [[ "$file" =~ .*"$1".* ]]; then
       printf "%-25s %-25s\n" "$file" "${file/$1/$2}"
     fi
   done
-  printf -- -----------------------------------------------"\n"
+  printf -- "$divider\n"
 
   while : ; do
     read -p "Continue? (y/n) " confirmation
@@ -182,5 +183,5 @@ while : ; do
   fi
 
   # Execute command
-  "${order[@]}"
+  eval "${order[@]}"
 done
