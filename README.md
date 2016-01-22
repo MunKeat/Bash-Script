@@ -1,4 +1,4 @@
-Bash-Script Repo
+#### Bash-Script Repo
 --------------------
 The Bash-Script repository serves as a "collection bin" for all bash scripts (and commands) that I have come across, and most likely have used.
 
