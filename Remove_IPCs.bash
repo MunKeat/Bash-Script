@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 ##########################################
 # SCRIPT: Remove_IPCs.bash
