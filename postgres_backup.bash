@@ -93,6 +93,26 @@ function database_backup() {
 	fi
 }
 
+function database_backup_job() {
+	# Aim for the nearest time specified
+	local current_date=""
+	local current_epoch=$(date +%s)
+	local tentative_target_epoch=$(date -d "${current_date}" "${backup_frequency[1]}" +%s)
+	local fallback_target_epoch
+
+	local sleep_seconds=$(( $target_epoch - $current_epoch ))
+
+	sleep "${sleep_seconds}"
+
+	database_backup
+
+	# Start sleep cycle
+	while : ;do
+		sleep 1
+		database_backup
+	done
+}
+
 function initialize() {
 	check_shell
 	
@@ -130,7 +150,7 @@ function initialize() {
 	if [[ "${database_name}" == "" ]]; then
 		read -p "${prompt_database_name}" database_name
 		echo "${line_break}"
-		database_name="${database_name:=“all”}”
+		database_name="${database_name:="all"}"
 	fi
 
 	if [[ "${dump_file_prefix}" == "" ]]; then
